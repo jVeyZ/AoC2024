@@ -33,18 +33,18 @@ int main(int argc, char const *argv[])
     regex dontPattern(R"(don't\(\))");
 
     for (const string& str : list) {
-        auto words_begin = sregex_iterator(str.begin(), str.end(), dontPattern);
+        auto words_begin = sregex_iterator(str.begin(), str.end(), pattern);
         auto words_end = sregex_iterator();
 
         for (sregex_iterator i = words_begin; i != words_end; ++i) {
             smatch match = *i;
             cout << match.str() << " " << match.position()<<endl;
-            /* if (match.size() == 3) {
+            if (match.size() == 3) {
                 int x = stoi(match[1].str());
                 int y = stoi(match[2].str());
                 num += x * y;
                 cout << "Found: " << match.str() << " with x = " << x << " and y = " << y << endl;
-            } */
+            } 
         }
     }
     cout << "Total: " << num << endl;
