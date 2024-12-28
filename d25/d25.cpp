@@ -125,12 +125,12 @@ int main(int argc, char const *argv[])
 
         }
     }
-    std::cout<<total;
+   /*  std::cout<<total;
      for (const auto& lock : locks) {
                     for (const auto& key : keys) {
                         display_combination(lock, key);
                     }
                 }
-
+ */
     return 0;
 }
