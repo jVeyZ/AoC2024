@@ -1,0 +1,5 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/alejandrogonzalez/AOC2024/Day3-Part1'
+relocations:     []
+...
