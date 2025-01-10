@@ -1,111 +1,80 @@
 #include <iostream>
-#include <fstream>
-#include <sstream>
 #include <vector>
 #include <string>
-#include <algorithm>
+#include <fstream>
+#include <sstream>
 #include <unordered_map>
-#include <unordered_set>
-#include <stack>
-
+#include <queue>
 using namespace std;
 
-class PageValidator {
+class GraphPageValidator {
 private:
-    // DP: Cache valid sequences to avoid recomputing
-    unordered_map<string, bool> memo;
-    
-    // Graph: Store rules as adjacency list
+    // Adjacency list representation of the graph
     unordered_map<int, vector<int>> graph;
+    // Keep track of incoming edges count for each node
+    unordered_map<int, int> inDegree;
     
-    // DP: Cache node positions in topological order
-    unordered_map<int, int> positions;
+    // Set of all nodes in the graph
+    unordered_set<int> allNodes;
 
-    string createKey(const vector<int>& sequence) {
-        stringstream ss;
-        for (int num : sequence) ss << num << ",";
-        return ss.str();
-    }
-
-    bool isValidSequenceMemoized(const vector<int>& sequence) {
-        // DP Step 1: Check if result is cached
-        string key = createKey(sequence);
-        if (memo.find(key) != memo.end()) {
-            return memo[key];
+    bool hasValidOrder(const vector<int>& sequence) {
+        // Create a temporary copy of inDegree for this validation
+        auto tempInDegree = inDegree;
+        
+        // Keep track of processed nodes to ensure sequence contains valid nodes
+        unordered_set<int> seenNodes;
+        
+        // For each number in the sequence
+        for (int current : sequence) {
+            // If this node has predecessors that haven't been processed, sequence is invalid
+            if (tempInDegree[current] > 0) {
+                return false;
+            }
+            
+            // Mark this node as seen
+            seenNodes.insert(current);
+            
+            // Reduce inDegree for all nodes that depend on current node
+            for (int neighbor : graph[current]) {
+                tempInDegree[neighbor]--;
+            }
         }
-
-        // DP Step 2: Validate using cached positions
-        for (size_t i = 0; i < sequence.size() - 1; i++) {
-            if (positions[sequence[i]] > positions[sequence[i + 1]]) {
-                memo[key] = false;
+        
+        // Check if all nodes in the sequence are valid nodes from our rules
+        for (int node : sequence) {
+            if (allNodes.find(node) == allNodes.end()) {
                 return false;
             }
         }
-
-        memo[key] = true;
+        
         return true;
     }
 
 public:
-    void addRule(int from, int to) {
-        graph[from].push_back(to);
-    }
-
-    bool topologicalSort() {
-        // DP Step 3: Build position cache for O(1) lookups
-        vector<int> sortedOrder;
-        unordered_map<int, int> inDegree;
-        
-        // Initialize in-degree
-        for (const auto& edge : graph) {
-            if (inDegree.find(edge.first) == inDegree.end()) {
-                inDegree[edge.first] = 0;
-            }
-            for (int to : edge.second) {
-                inDegree[to]++;
-            }
-        }
-
-        // Find nodes with zero in-degree
-        vector<int> zeroInDegree;
-        for (const auto& node : inDegree) {
-            if (node.second == 0) {
-                zeroInDegree.push_back(node.first);
-            }
-        }
-
-        // Process nodes
-        while (!zeroInDegree.empty()) {
-            int node = zeroInDegree.back();
-            zeroInDegree.pop_back();
-            sortedOrder.push_back(node);
-
-            if (graph.find(node) != graph.end()) {
-                for (int neighbor : graph[node]) {
-                    inDegree[neighbor]--;
-                    if (inDegree[neighbor] == 0) {
-                        zeroInDegree.push_back(neighbor);
-                    }
-                }
-            }
-        }
-
-        // Cache positions for O(1) lookup
-        for (size_t i = 0; i < sortedOrder.size(); i++) {
-            positions[sortedOrder[i]] = i;
-        }
-
-        return sortedOrder.size() == inDegree.size();
+    void addRule(int first, int second) {
+        // Add directed edge: first -> second
+        graph[first].push_back(second);
+        // Increase incoming edge count for second
+        inDegree[second]++;
+        // Add both nodes to our set of all nodes
+        allNodes.insert(first);
+        allNodes.insert(second);
     }
 
     int validateAndGetMiddle(const vector<int>& sequence) {
-        if (isValidSequenceMemoized(sequence)) {
-            return sequence[sequence.size() / 2];
+        if (sequence.empty()) return 0;
+        
+        // Check if sequence follows topological ordering rules
+        if (!hasValidOrder(sequence)) {
+            return 0;
         }
-        return 0;
+        
+        // If valid, return middle element
+        return sequence[sequence.size() / 2];
     }
 };
 
+// Helper function remains the same
 vector<string> split(const string& str, char delimiter) {
     vector<string> tokens;
     string token;
@@ -120,14 +89,13 @@ int main() {
     ifstream inputFile("input5");
     string line;
 
-    PageValidator validator;
-    vector<vector<int>> pageLists; // Lista de listas de páginas
-
-    bool parsingRules = true; // Bandera para saber si estamos leyendo reglas o listas de páginas
+    GraphPageValidator validator;
+    vector<vector<int>> pageLists;
+    bool parsingRules = true;
 
     while (getline(inputFile, line)) {
         if (line.empty()) {
-            parsingRules = false; // Cambiar a leer listas de páginas
+            parsingRules = false;
             continue;
         }
 
@@ -136,30 +104,23 @@ int main() {
             if (parts.size() == 2) {
                 int first = stoi(parts[0]);
                 int second = stoi(parts[1]);
-                validator.addRule(first, second); // Agregar arista al grafo
+                validator.addRule(first, second);
             }
         } else {
             auto parts = split(line, ',');
             vector<int> pageList;
             for (const auto& part : parts) {
-                pageList.push_back(stoi(part)); // Agregar página a la lista
+                pageList.push_back(stoi(part));
             }
-            pageLists.push_back(pageList); // Agregar lista de páginas a la colección
+            pageLists.push_back(pageList);
         }
     }
 
     inputFile.close();
 
-    // Realizar el ordenamiento topológico
-    if (!validator.topologicalSort()) {
-        cerr << "Se detectó un ciclo en el grafo. No es posible realizar el ordenamiento topológico." << endl;
-        return 1;
-    }
-
-    // Verificar cada lista de páginas
     int total = 0;
-    for (const auto& pageList : pageLists) {
-        int isValid = validator.validateAndGetMiddle(pageList);
+    for (const auto& sequence : pageLists) {
+        int isValid = validator.validateAndGetMiddle(sequence);
         total += isValid;
         cout << isValid << endl;
     }
