@@ -23,9 +23,9 @@ vector<string> dividirCadena(const string& str, char delimitador) {
 }
 
 // Función para encontrar tripletas de computadoras conectadas
-set<vector<string>> encontrarTripletasConectadas(const vector<string>& conexiones, char letraFiltro = '\0') {
+set<vector<string> > encontrarTripletasConectadas(const vector<string>& conexiones, char letraFiltro = '\0') {
     // Crear representación de lista de adyacencia del grafo
-    map<string, set<string>> grafo;
+    map<string, set<string> > grafo;
     
     // Construir el grafo
     for (const string& conexion : conexiones) {
@@ -43,7 +43,7 @@ set<vector<string>> encontrarTripletasConectadas(const vector<string>& conexione
     }
     
     // Encontrar todas las tripletas
-    set<vector<string>> tripletas;
+    set<vector<string> > tripletas;
     
     // Verificar todas las combinaciones posibles de tres nodos
     for (size_t i = 0; i < nodos.size(); i++) {
@@ -54,7 +54,7 @@ set<vector<string>> encontrarTripletasConectadas(const vector<string>& conexione
                 const string& c = nodos[k];
                 
                 // Verificar si los tres nodos están conectados entre sí
-                if (grafo[a].count(b) && grafo[a].count(c) && graph[b].count(c)) {
+                if (grafo[a].count(b) && grafo[a].count(c) && grafo[b].count(c)) {
                     vector<string> tripleta = {a, b, c};
                     sort(tripleta.begin(), tripleta.end());
                     
@@ -105,11 +105,6 @@ int main() {
     auto tripletasConT = encontrarTripletasConectadas(conexiones, 't');
     cout << "\nNúmero de tripletas que contienen una computadora que comienza con 't': " 
          << tripletasConT.size() << endl;
-    
-    cout << "\nTripletas que contienen computadoras que comienzan con 't':" << endl;
-    for (const auto& tripleta : tripletasConT) {
-        cout << tripleta[0] << "," << tripleta[1] << "," << tripleta[2] << endl;
-    }
     
     return 0;
 }
