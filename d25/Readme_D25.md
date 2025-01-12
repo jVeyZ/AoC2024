@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 25**
+---
+Hemos elegido este problema, en primer lugar, por ser el último ejercicio propuesto en el AOC, y además por la posibilidad de integrar la memorización con programación dinámica.
+---
 
 En el planteamiento del problema se nos proporciona una lista de llaves y cerraduras, la condición para que una llave sea válida para una cerradura es que no haya solapamiento en los pines al igual que en el mundo real.
 
