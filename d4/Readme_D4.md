@@ -1,4 +1,7 @@
 # DÍA 4
+---
+Este ejercicio fué realizado de manera lúdica por un miembro del equipo, puesto que el problema fué sacado en un periodo en el que realizar todos los ejercicios a medida que salían no resultaba un peso importante respecto a otros compromisos académicos.
+---
 
 ## Parte 1: Encontrar todas las ocurrencias de "XMAS"
 
