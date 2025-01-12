@@ -5,6 +5,10 @@ Hemos elegido este problema porque era posible aplicar tanto programación diná
 
 El planteamiento de este problema es una matriz de integers que varían del 0 al 9, a partir del input se nos pide encontrar todos los gradientes posibles desde todos los puntos de partida que sean igual a 0\. Dichos gradientes deben cumplir la condición que la variación de valor solo sea 1 por etapa, y solo son válidas las casillas adyacentes sin contar las diagonales.
 
+Aquí hay una representación de los datos donde blanco=0 y negro=9:
+
+
+
 ## **Técnicas y estructuras de datos empleadas**
 
 1. **Programación dinámica**:  
