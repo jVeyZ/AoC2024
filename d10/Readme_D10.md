@@ -7,6 +7,7 @@ El planteamiento de este problema es una matriz de integers que varían del 0 al
 
 Aquí hay una representación de los datos donde blanco=0 y negro=9:
 
+![rep](representation.png)
 
 
 ## **Técnicas y estructuras de datos empleadas**
