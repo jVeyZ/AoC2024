@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 23**
+---
+Hemos elegido este problema porque nos permite emplear la programación con grafos como método de resolución, aplicando conocimientos vistos en clase.
+---
 
 ## **Técnicas y estructuras de datos empleadas**
 
