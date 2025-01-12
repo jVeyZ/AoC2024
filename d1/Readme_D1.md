@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 1**
+---
+Hemos elegido este problema, en primer lugar, por ser el primer ejercicio propuesto en el AOC, y además por la posibilidad de integrar la memorización con programación dinámica
+---
 
 ## **Técnicas y estructuras de datos empleadas**
 
@@ -33,3 +36,5 @@
 
 * La función principal utiliza calculateSimilarityScore para procesar toda la columna column1 y el puntaje se imprime como resultado final, representando la similitud total entre las dos columnas de datos.
 
+
+Mediante la resolución de este problema se han afianzado los conocimientos de programación dinámica y el tratamiento de datos con vectores, así como la aplicación a un lenguaje de programación real del proceso de acceso y guardado (cacheado) en memoria de los valores para acortar el tiempo de procesado del problema.
