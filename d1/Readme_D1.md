@@ -1,6 +1,6 @@
 # **README \- Advent of Code: Día 1**
 ---
-Hemos elegido este problema, en primer lugar, por ser el primer ejercicio propuesto en el AOC, y además por la posibilidad de integrar la memorización con programación dinámica
+Hemos elegido este problema, en primer lugar, por ser el primer ejercicio propuesto en el AOC, y además por la posibilidad de integrar la memorización con programación dinámica y tablas hash para la resolución de la segunda estrella
 ---
 
 ## **Técnicas y estructuras de datos empleadas**
