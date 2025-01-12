@@ -6,7 +6,7 @@
 #include <utility>
 #include <queue>
 
-struct PATHS { // Estructura para almacenar los caminos encontrados (programación dinámica)
+struct PATHS {
     std::pair<int, int> coords;
     int counter;
     std::vector<std::pair<int,int>> end;
@@ -16,13 +16,10 @@ std::vector<std::vector<int>> map;
 std::vector<std::pair<int, int>> stack;
 int start_x, start_y;
 
-
-// Explora caminos desde una posición inicial
 void check_path(const std::vector<std::vector<int>>& map, int i, int j) {
     static int dy[4] = {-1, 1, 0, 0};
     static int dx[4] = {0, 0, -1, 1};
 
-    // Si se encuentra un destino y es camino único se actualizan los caminos en `paths`
     if (map[i][j] == 9) {
         bool found = false;
         for (auto& path : paths) {
@@ -48,8 +45,7 @@ void check_path(const std::vector<std::vector<int>>& map, int i, int j) {
         }
         if(stack.empty()){return;}
     }
-    
-    // Se exploran posiciones adyacentes válidas
+
     for (int n = 0; n < 4; n++) {
         int ny = i + dy[n];
         int nx = j + dx[n];
@@ -58,7 +54,6 @@ void check_path(const std::vector<std::vector<int>>& map, int i, int j) {
         }
     }
 
-    // Continua la exploración con la última posición de la pila
     if (!stack.empty()) {
         int y = stack.back().first;
         int x = stack.back().second;
@@ -83,7 +78,6 @@ int main(int argc, char const *argv[]) {
     }
     file.close();
 
-    // LLamada a la función dinámica que encuentra los caminos y los guarda en memoria
     for (int i = 0; i < map.size(); i++) {
         for (int j = 0; j < map[0].size(); j++) {
             if (map[i][j] != 0) {
@@ -95,7 +89,6 @@ int main(int argc, char const *argv[]) {
         }
     }
 
-    // Suma total de los caminos
     for (const auto& elem : paths) {
         printf("Origin {%d,%d}:%d \n",elem.coords.second, elem.coords.first, elem.counter);
         total += elem.counter;
