@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 2**
+---
+Hemos elegido ese problema por su uso de recursividad, y por ser el segundo ejercicio del AOC, sacado en un periodo en el que realizar todos los ejercicios a medida que salían no resultaba un peso importante respecto a otros compromisos académicos.
+---
 
 Este problema se divide en dos partes:
 
