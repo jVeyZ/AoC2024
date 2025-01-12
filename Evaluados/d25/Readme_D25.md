@@ -5,6 +5,11 @@ Hemos elegido este problema, en primer lugar, por ser el último ejercicio propu
 
 En el planteamiento del problema se nos proporciona una lista de llaves y cerraduras, la condición para que una llave sea válida para una cerradura es que no haya solapamiento en los pines al igual que en el mundo real.
 
+Aquí hay una visualización de cerraduras con llaves válidas, la cerradura está representada en negro, la llave en blanco, y el espacio libre en gris:
+
+![rep](representation.png)
+
+
 **Lógica implementada:**
 
 * **combination\_parser():** Lee la llave o cerradura, y cuenta la longitud de pines por cada columna, posteriormente añade el vector de integers al vector de vectores correspondiente.  
