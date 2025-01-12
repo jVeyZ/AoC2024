@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 5**
+---
+Este ejercicio fué elegido por requerir el uso de grafos dirigidos, un concepto explicado en las sesiones de Programación.
+---
 
 ## **Técnica y estructuras de datos empleadas**
 
@@ -40,3 +43,4 @@ El problema del Día 5 se aborda utilizando un modelo basado en **grafos dirigid
 * Si es inválida, se retorna 0\.  
 * El programa acumula el total de nodos válidos en las secuencias para imprimirlo al final.
 
+La realización de este ejercicio ha permitido profundizar en el uso de grafos dirigidos y su aplicación práctica para resolver problemas de orden y dependencias. En particular, se ha aprendido a modelar relaciones jerárquicas mediante un grafo, utilizar técnicas avanzadas como el ordenamiento topológico para garantizar el cumplimiento de reglas, y aplicar algoritmos iterativos para corregir y validar estructuras complejas de datos. Además, este ejercicio ha resaltado la importancia de descomponer problemas en pasos manejables, como la construcción del grafo, la validación de listas y la corrección iterativa, lo que facilita el diseño de soluciones eficientes y modulares.
