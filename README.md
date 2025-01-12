@@ -7,6 +7,5 @@ Los problemas elegidos para la evaluación de PRA son:
   -d6
   -d7
   -d10
-  -d11
   -d23
   -d25
