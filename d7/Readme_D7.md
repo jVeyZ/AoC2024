@@ -1,4 +1,7 @@
 # **README \- Advent of Code: Día 7**
+---
+Este ejercicio ha sido elegido por los beneficios que conlleva el uso de técnicas avanzadas de programación en su resolución, en particular con la búsqueda recursiva y la memorización.
+---
 
 ### **Parte 1: Sumar las combinaciones válidas**
 
@@ -20,3 +23,5 @@
 
 * Se añade un nuevo caso para probar la concatenación de números:  
 * Este caso prueba si concatenar el número actual con el resultado acumulado puede alcanzar el objetivo.
+
+En este ejercicio se ha podido trabajar con técnicas avanzadas de programación, como la búsqueda recursiva, memorización y manipulación de cadenas y números. En la primera parte, se aprendió a generar y evaluar combinaciones de operadores para cumplir un objetivo, optimizando cálculos mediante memorización. La segunda parte introdujo el operador de concatenación (||), destacando cómo ampliar la funcionalidad de algoritmos añadiendo nuevos casos y manejando eficientemente operaciones combinadas. 
