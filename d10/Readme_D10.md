@@ -1,6 +1,6 @@
 # **README \- Advent of Code: Día 10**
 ---
-Hemos elegido este problema porque era posible aplicar tanto programación dinámica para mejorar el tiempo de ejecución del mismo, como hacer uso de un método de búsqueda DFS(depth first search). Metodo comunmente empleado en problemas de árboles y grafos, por lo que aunque el problema no emplea grafos, permite prácticar técnicas comumente asociadas con ellos.
+Hemos elegido este problema porque era posible aplicar tanto programación dinámica para mejorar el tiempo de ejecución del mismo, como hacer uso de un método de búsqueda DFS(depth first search). Metodo comunmente empleado en problemas de árboles y grafos, por lo que aunque el problema no emplea grafos, permite prácticar técnicas comunmente asociadas con ellos.
 ---
 
 El planteamiento de este problema es una matriz de integers que varían del 0 al 9, a partir del input se nos pide encontrar todos los gradientes posibles desde todos los puntos de partida que sean igual a 0\. Dichos gradientes deben cumplir la condición que la variación de valor solo sea 1 por etapa, y solo son válidas las casillas adyacentes sin contar las diagonales.
